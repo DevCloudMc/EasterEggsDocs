@@ -1,0 +1,6 @@
+[book]
+authors = ["BrainRTP"]
+language = "en"
+multilingual = true
+src = "src"
+title = "EasterEggs Documentation"

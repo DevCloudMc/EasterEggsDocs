@@ -1,0 +1,438 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>EasterEggs Documentation</title>
+        <meta name="robots" content="noindex" />
+
+
+        <!-- Custom HTML head -->
+        
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="main.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li class="chapter-item expanded affix "><li class="part-title">GETTING STARTED</li><li class="chapter-item expanded "><div><strong aria-hidden="true">2.</strong> HOCON format</div></li><li class="chapter-item expanded "><a href="started/installing.html"><strong aria-hidden="true">3.</strong> Installing</a></li><li class="spacer"></li><li class="chapter-item expanded affix "><li class="part-title">GENERAL FETURES</li><li class="chapter-item expanded "><a href="features/category.html"><strong aria-hidden="true">4.</strong> Category</a></li><li class="chapter-item expanded "><a href="features/create.html"><strong aria-hidden="true">5.</strong> Create EasterEggs</a></li><li class="chapter-item expanded "><a href="features/actions.html"><strong aria-hidden="true">6.</strong> Actions</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="features/actions/commands.html"><strong aria-hidden="true">6.1.</strong> Commands</a></li><li class="chapter-item expanded "><a href="features/actions/firework.html"><strong aria-hidden="true">6.2.</strong> Firework</a></li><li class="chapter-item expanded "><a href="features/actions/message.html"><strong aria-hidden="true">6.3.</strong> Message</a></li><li class="chapter-item expanded "><a href="features/actions/money.html"><strong aria-hidden="true">6.4.</strong> Money</a></li><li class="chapter-item expanded "><a href="features/actions/sound.html"><strong aria-hidden="true">6.5.</strong> Sound</a></li></ol></li><li class="chapter-item expanded "><a href="features/actions/finish.html"><strong aria-hidden="true">7.</strong> Finish action</a></li><li class="chapter-item expanded "><a href="features/placeholders.html"><strong aria-hidden="true">8.</strong> Placeholders</a></li><li class="chapter-item expanded "><div><strong aria-hidden="true">9.</strong> NPC</div></li><li class="chapter-item expanded "><a href="features/examples.html"><strong aria-hidden="true">10.</strong> Examples</a></li><li class="spacer"></li><li class="chapter-item expanded affix "><li class="part-title">FOR DEVELOPERS</li><li class="chapter-item expanded "><div><strong aria-hidden="true">11.</strong> Plugin API</div></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">EasterEggs Documentation</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="introduction"><a class="header" href="#introduction">Introduction</a></h1>
+<h1 id="eastereggs30"><a class="header" href="#eastereggs30">EasterEggs3.0</a></h1>
+<p>This plugin allows you to create easter eggs (blocks, entities, <del>NPC</del>). By clicking<br />
+them u can run various actions and events.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="installing"><a class="header" href="#installing">Installing</a></h1>
+<p>Copy the <strong>.jar</strong> file to your plugins folder. Run the server.
+Now, go to the <strong>config.conf</strong>.<br />
+You will see the following:</p>
+<pre><code class="language-kotlin">database {
+  type: &quot;MySQL&quot;
+  host: &quot;localhost&quot;
+  database: &quot;eastereggs&quot;
+  port: 3306
+  user: &quot;eastereggs&quot;
+  password: &quot;123123&quot;
+}
+
+languageFile = &quot;en&quot;
+</code></pre>
+<p>To get help about the plugin type <code>/ee help</code>.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="categories"><a class="header" href="#categories">Categories</a></h1>
+<p>You can create several easter egg categories and assign different access rights to them for users.
+For example, you have two categories, one of which is accessible to player A and one of which is not.
+The access to the category is configured through the permissions <code>ee.type.&lt;category_name&gt;</code></p>
+<p>To create a new category type <code>/ee category create &lt;category_name&gt;</code>.</p>
+<p>To delete any category type <code>/ee category delete &lt;category_name&gt;</code>. <em>If easter eggs from this category were already found by someone
+they will be deleted from the database.</em></p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="create-eastereggs"><a class="header" href="#create-eastereggs">Create EasterEggs</a></h1>
+<p>Once you've created the group u can start editing it and adding new easter eggs by
+typing <code>/ee edit &lt;category_name&gt;</code>.</p>
+<p>To add a new easter egg just click RMB on any block/armorstand/painting/frame/<del>npc</del>.
+A new easter eggs with unique ID will be created.</p>
+<p>To remove any easter egg just click LBM on it while editing.</p>
+<h2 id="adding-actions-to-easter-eggs"><a class="header" href="#adding-actions-to-easter-eggs">Adding actions to easter eggs</a></h2>
+<p>Easter eggs actions are adding in edit mode. To add an action just type
+<code>/ee action add &lt;easter_egg_id&gt; &lt;action_name&gt; &lt;action_data&gt;</code></p>
+<p><code>&lt;action_name&gt;</code> value is the name of one of the following action types:</p>
+<table><thead><tr><th>Param</th><th>Description</th></tr></thead><tbody>
+<tr><td><code>message</code></td><td>Chat/actiobar/title message.</td></tr>
+<tr><td><code>commands</code></td><td>Running commands by the player or server</td></tr>
+<tr><td><code>sound</code></td><td>Playing sound for the player</td></tr>
+<tr><td><code>money</code></td><td>Gives any amount of money</td></tr>
+<tr><td><code>firework</code></td><td>Launching a firework</td></tr>
+</tbody></table>
+<p>Those actions are in the json format. Data depends on the variables of
+specified action.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="actions"><a class="header" href="#actions">Actions</a></h1>
+<p>Actions are what will be done when the egg is found</p>
+<p>Here is a list of all available actions:</p>
+<ul>
+<li><a href="features/./actions/commands.html">Commands</a> - command execution</li>
+<li><a href="features/./actions/firework.html">Firework</a> - fireworks launch</li>
+<li><a href="features/./actions/message.html">Message</a> - displaying the message on the screen</li>
+<li><a href="features/./actions/money.html">Money</a> - disbursement of money</li>
+<li><a href="features/./actions/sound.html">Sound</a> - sound payback</li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="commands"><a class="header" href="#commands">Commands</a></h1>
+<p>Action to execute commands on behalf of the player or console</p>
+<h3 id="structure"><a class="header" href="#structure">Structure</a></h3>
+<table><thead><tr><th>Param</th><th>Description</th><th>Value type</th></tr></thead><tbody>
+<tr><td><code>player</code></td><td>Commands list. Specifies whether run a command by console</td><td>List of String</td></tr>
+<tr><td><code>console</code></td><td>Commands list. Specifies whether run a command by player</td><td>List of String</td></tr>
+</tbody></table>
+<h3 id="examples"><a class="header" href="#examples">Examples</a></h3>
+<p>Example json format:<br />
+<code>{console:[&quot;Command 1&quot;, &quot;Command 2&quot;]}</code></p>
+<p>Example command to add action:<br />
+<code>/ee action add &lt;egg_id&gt; commands {player=[&quot;home&quot;, &quot;say Hello&quot;] console=[&quot;broadcast Hi!&quot;]}</code></p>
+<h3 id="example-config"><a class="header" href="#example-config">Example config</a></h3>
+<pre><code class="language-kotlin">title = &quot;Eggs Category&quot;
+hidePlayerData = false
+category = &quot;category2&quot;
+
+&quot;0&quot; {
+  location = &quot;world, 0.0, 1.0, 0.0&quot;
+  type = &quot;BLOCK&quot;
+  id = 0
+  actions {
+    commands {
+      player = [
+        &quot;home&quot;,
+        &quot;money&quot;
+      ]
+      console = &quot;say hello!&quot;
+    }
+  }
+}
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="message"><a class="header" href="#message">Message</a></h1>
+<p>The action that sets off the fireworks</p>
+<h3 id="structure-1"><a class="header" href="#structure-1">Structure</a></h3>
+<table><thead><tr><th>Param</th><th>Description</th><th>Default</th><th>Value type</th></tr></thead><tbody>
+<tr><td><code>power</code></td><td>The distance the fireworks will fly. power = 0 ~ 4-5 blocks</td><td>0</td><td>Integer</td></tr>
+<tr><td><code>effects</code></td><td>Effects list</td><td>Random</td><td>List of String</td></tr>
+</tbody></table>
+<p>Colors for effects must be set in HEX. The number of effects is unlimited.</p>
+<h3 id="examples-1"><a class="header" href="#examples-1">Examples</a></h3>
+<p>At the moment, this action can only be added via config.</p>
+<h3 id="example-config-1"><a class="header" href="#example-config-1">Example config</a></h3>
+<pre><code class="language-kotlin">title = &quot;Eggs Category&quot;
+hidePlayerData = false
+category = &quot;category2&quot;
+
+&quot;0&quot; {
+  location = &quot;world, 0.0, 0.0, 0.0&quot;
+  type = &quot;BLOCK&quot;
+  id = 0;
+  actions {
+    firework {
+      power = 1
+      effects: [
+        {
+          type = BALL
+          trail = false
+          colors: [
+            &quot;FF00FF&quot;,
+            &quot;FF00FF&quot;,
+            &quot;F000F0&quot;
+          ]
+          fadeColors: [
+            &quot;000000&quot;,
+            &quot;FF0000&quot;
+          ]
+        }
+      ]
+    }
+}
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="message-1"><a class="header" href="#message-1">Message</a></h1>
+<p>Action to display text on the player's screen. This can be either a regular chat message to the player or an action bar &amp; title with subtitle</p>
+<h3 id="structure-2"><a class="header" href="#structure-2">Structure</a></h3>
+<table><thead><tr><th>Param</th><th>Description</th><th>Default value</th><th>Value type</th></tr></thead><tbody>
+<tr><td><code>messages</code></td><td>List of messages displaying in the chat. That's how it looks in</td><td></td><td>String</td></tr>
+<tr><td><code>title</code></td><td>Title message</td><td></td><td>String</td></tr>
+<tr><td><code>subTitle</code></td><td>Subtitle message</td><td></td><td>String</td></tr>
+<tr><td><code>actionbar</code></td><td>Actionbar message</td><td></td><td>String</td></tr>
+<tr><td><code>fadeIn</code></td><td>Title fade in period in ticks <em>(1 second = 20 ticks)</em></td><td>10 (in ticks)</td><td>Integer</td></tr>
+<tr><td><code>fadeOut</code></td><td>Title fade out period in ticks</td><td>10 (in ticks)</td><td>Integer</td></tr>
+<tr><td><code>stay</code></td><td>Delay period before fade out starts in ticks</td><td>30 (in ticks)</td><td>Integer</td></tr>
+</tbody></table>
+<p><code>fadeIn</code>, <code>fadeOut</code>, <code>stay</code> parameters only affect the following <code>actionBar</code>, <code>title</code> or <code>subTitle</code> parameters</p>
+<h3 id="examples-2"><a class="header" href="#examples-2">Examples</a></h3>
+<p>Example json format:<br />
+<code>{messages:[&quot;Message 1&quot;, &quot;Message 2&quot;]}</code></p>
+<p>For example, if u want to display something in actionbar, you should type:<br />
+<code>/ee action add &lt;egg_id&gt; message {actionbar:&quot;Hello, world!&quot;}</code><br />
+or<br />
+<code>/ee action add &lt;egg_id&gt; message {messages=[&quot;&amp;eFirst&quot;, &quot;&amp;cSecond&quot;]}</code></p>
+<h3 id="example-config-2"><a class="header" href="#example-config-2">Example config</a></h3>
+<pre><code class="language-kotlin">title = &quot;Eggs Category&quot;
+hidePlayerData = false
+category = &quot;category2&quot;
+
+&quot;0&quot; {
+  location = &quot;world, 0.0, 1.0, 0.0&quot;
+  type = &quot;BLOCK&quot;
+  id = 0
+  actions {
+    message {
+      messages: [
+        &quot;Hello world!&quot;,
+        &quot;...&quot;
+      ]
+      title = &quot;Title text&quot;
+      subTitle = &quot;subtitle text&quot;
+      actionBar = &quot;Actionbar text&quot;
+      fadeIn = 10
+      stay = 40
+      fadeOut = 10
+    }
+  }
+}
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="money"><a class="header" href="#money">Money</a></h1>
+<p>Action to give money to a player</p>
+<h3 id="structure-3"><a class="header" href="#structure-3">Structure</a></h3>
+<table><thead><tr><th>Param</th><th>Description</th><th>Value type</th></tr></thead><tbody>
+<tr><td><code>money</code></td><td>The amount of money to be handed out</td><td>Float or Integer</td></tr>
+</tbody></table>
+<h3 id="examples-3"><a class="header" href="#examples-3">Examples</a></h3>
+<p>At the moment, this action can only be added via config.</p>
+<h3 id="example-config-3"><a class="header" href="#example-config-3">Example config</a></h3>
+<pre><code class="language-kotlin">title = &quot;Eggs Category&quot;
+hidePlayerData = false
+category = &quot;category2&quot;
+
+&quot;0&quot; {
+  location = &quot;world, 0.0, 1.0, 0.0&quot;
+  type = &quot;BLOCK&quot;
+  id = 0
+  actions {
+    money = 100
+  }
+}
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="sound"><a class="header" href="#sound">Sound</a></h1>
+<p>Action that plays the sound</p>
+<h3 id="structure-4"><a class="header" href="#structure-4">Structure</a></h3>
+<table><thead><tr><th>Param</th><th>Description</th><th>Default</th><th>Value type</th></tr></thead><tbody>
+<tr><td><code>type</code></td><td>Sound name. Here you can find all of them:  <a href="https://hub.spigotmc.org/javadocs/spigot/org/bukkit/Sound.html">Sound types</a></td><td></td><td>String</td></tr>
+<tr><td><code>location</code></td><td>Sound format playback location: <code>&quot;world,x,y,z&quot;</code></td><td>Player location</td><td>String</td></tr>
+<tr><td><code>pitch</code></td><td>The pitch of the volume</td><td>1.0</td><td>Float</td></tr>
+<tr><td><code>volume</code></td><td>How loud the sound</td><td>1.0</td><td>Float</td></tr>
+</tbody></table>
+<h3 id="examples-4"><a class="header" href="#examples-4">Examples</a></h3>
+<p>Example json format:<br />
+<code>{type=&quot;SOUND_TYPE_NAME&quot; location=&quot;world,0,0,0&quot;}</code></p>
+<p>Command to add an action for an easter egg:<br />
+<code>/ee action add &lt;egg_id&gt; sound {type=&quot;ENTITY_PLAYER_LEVELUP&quot; location=&quot;world,0,60,-133&quot;}</code></p>
+<h3 id="example-config-4"><a class="header" href="#example-config-4">Example config</a></h3>
+<pre><code class="language-kotlin">title = &quot;Eggs Category&quot;
+hidePlayerData = false
+category = &quot;category2&quot;
+
+&quot;0&quot; {
+  location = &quot;world, 0.0, 1.0, 0.0&quot;
+  type = &quot;BLOCK&quot;
+  id = 0
+    actions {
+        sound {
+            type: &quot;ENTITY_PLAYER_LEVELUP&quot;
+            location: &quot;world, -99.47, 4.0, -380.93&quot;
+        }
+    }
+}
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="finish-action"><a class="header" href="#finish-action">Finish action</a></h1>
+<p>The action that sets off the fireworks</p>
+<h3 id="example-config-5"><a class="header" href="#example-config-5">Example config</a></h3>
+<pre><code class="language-kotlin">title = &quot;Eggs Category&quot;
+hidePlayerData = false
+category = &quot;category2&quot;
+
+finishAction {
+  sound = &quot;UI_TOAST_CHALLENGE_COMPLETE&quot;
+  message {
+    title = &quot;&amp;aFinish!&quot;
+    subtitle = &quot;&amp;eyou have found them all :)&quot;
+    fadeIn = 10
+    fadeOut = 10
+    stay = 50
+  }
+}
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="placeholders"><a class="header" href="#placeholders">Placeholders</a></h1>
+<p><a href="https://www.spigotmc.org/resources/placeholderapi.6245/">PlaceholderAPI</a> support has been added to work with third-party plugins Available placeholders:<br />
+<code>%ee_found_&lt;name&gt;%</code> - Number of found easter eggs in the group <code>&lt;name&gt;</code><br />
+<code>%ee_count_&lt;name&gt;%</code> - Total number of easter eggs in the group <code>&lt;name&gt;</code> </p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="examples-5"><a class="header" href="#examples-5">Examples</a></h1>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+
+            </nav>
+
+        </div>
+
+
+
+
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
+
+        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+
+        <script type="text/javascript">
+        window.addEventListener('load', function() {
+            window.setTimeout(window.print, 100);
+        });
+        </script>
+
+    </body>
+</html>
